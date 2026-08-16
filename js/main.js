@@ -123,6 +123,7 @@ form?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (noteOk) noteOk.hidden = true;
   if (noteErr) noteErr.hidden = true;
+
   if (form.elements._honey?.value) {
     if (noteOk) noteOk.hidden = false;
     form.reset();
@@ -130,28 +131,19 @@ form?.addEventListener("submit", async (event) => {
   }
 
   const payload = Object.fromEntries(new FormData(form));
-  payload._subject = "Himalayan Academy enquiry";
-  payload._template = "table";
-  payload._captcha = "false";
-
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
   }
 
   try {
-    const res = await fetch("https://formsubmit.co/ajax/ajune7834@gmail.com", {
+    const res = await fetch("/api/contact", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
     });
-    const data = await res.json();
-    if (!res.ok || data.success === "false" || data.success === false) {
-      throw new Error(data.message || "send failed");
-    }
+    const data = await res.json().catch(() => ({ ok: false }));
+    if (!res.ok || !data.ok) throw new Error("send failed");
     form.reset();
     if (noteOk) noteOk.hidden = false;
   } catch {
