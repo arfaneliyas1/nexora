@@ -72,18 +72,20 @@ a {
   gap: 10px;
   color: #fff;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   letter-spacing: -0.03em;
 }
 
 .logo span {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   border-radius: 8px;
   background: var(--blue);
-  font-size: 0.88rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
 }
 
 #menu {
@@ -287,10 +289,122 @@ li {
   color: var(--muted);
 }
 
-.lead {
+.legal {
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  margin: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.legal::backdrop {
+  background: rgba(7, 16, 28, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.legal[open] {
+  animation: legal-in 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.legal[open]::backdrop {
+  animation: legal-dim 0.35s ease;
+}
+
+.legal-card {
+  position: relative;
+  overflow: auto;
+  max-height: calc(100vh - 48px);
+  padding: 36px 32px 28px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: 0 28px 70px rgba(7, 16, 28, 0.28);
+}
+
+.legal-card h2 {
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+.legal-card > p:not(.label) {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.legal-card .btn {
+  min-width: 160px;
+}
+
+.legal-x {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.legal-x:hover {
+  color: var(--navy);
+  background: var(--soft);
+}
+
+@keyframes legal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes legal-dim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .legal[open],
+  .legal[open]::backdrop {
+    animation: none;
+  }
+}
+
+.legal-note {
+  text-align: center;
+  max-width: 720px;
+  margin: 28px auto 0;
+  font-size: 0.88rem;
+}
+
+.footer-legal {
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+
+.footer-legal a {
+  color: #93c5fd;
+}
+
+.offer strong {
   color: var(--text);
   font-weight: 600;
-  margin-bottom: 14px;
 }
 
 .features {
@@ -306,7 +420,8 @@ li {
 }
 
 .features article,
-.services article,
+.work article,
+.offer,
 .plan,
 form {
   background: #fff;
@@ -318,7 +433,8 @@ form {
 
 .about,
 .services,
-.contact {
+.contact,
+.work {
   padding: 88px 0;
 }
 
@@ -326,6 +442,36 @@ form {
 .pricing {
   padding: 88px 0;
   background: var(--soft);
+}
+
+.prose {
+  max-width: 760px;
+}
+
+.prose p {
+  margin-bottom: 14px;
+}
+
+.about p + p {
+  margin-top: 14px;
+}
+
+.offer-list {
+  display: grid;
+  gap: 20px;
+}
+
+.offer p + p {
+  margin-top: 12px;
+}
+
+.work article span {
+  display: block;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
 }
 
 .features article span {
@@ -338,13 +484,15 @@ form {
 }
 
 .features article,
-.services article,
+.work article,
+.offer,
 .plan {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .features article:hover,
-.services article:hover,
+.work article:hover,
+.offer:hover,
 .plan:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 36px rgba(11, 31, 54, 0.1);
@@ -560,12 +708,122 @@ textarea:focus {
   font-size: 0.9rem;
 }
 
+.note.err {
+  color: #b91c1c;
+}
+
+.honey {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
+.details {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin: 22px 0 12px;
+}
+
+.details span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.details a,
+.details li {
+  color: var(--text);
+  font-weight: 600;
+}
+
+#map {
+  height: 200px;
+  margin-top: 18px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #e8eef4;
+}
+
+#map .leaflet-control-attribution {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
 footer {
-  background: var(--navy);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(29, 78, 216, 0.22), transparent 36%),
+    var(--navy);
   color: #93a4b8;
   text-align: center;
-  padding: 28px 0;
+  padding: 52px 0 36px;
   font-size: 0.9rem;
+}
+
+.footer-block {
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+}
+
+.footer-logo {
+  color: #fff;
+}
+
+.footer-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 220px));
+  gap: 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+.footer-card {
+  display: grid;
+  gap: 6px;
+  padding: 18px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.footer-card small {
+  color: #93a4b8;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.leaflet-popup-content {
+  font-family: Inter, system-ui, sans-serif;
+  margin: 10px 14px;
+}
+
+.map-pin {
+  background: none;
+  border: 0;
+}
+
+.map-dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.28);
 }
 
 footer p {
@@ -594,7 +852,8 @@ footer p {
   }
 
   .grid-3,
-  .split {
+  .split,
+  .footer-cards {
     grid-template-columns: 1fr;
   }
 
