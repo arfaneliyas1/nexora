@@ -131,19 +131,21 @@ form?.addEventListener("submit", async (event) => {
   }
 
   const payload = Object.fromEntries(new FormData(form));
+  delete payload._honey;
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
   }
 
   try {
-    const res = await fetch("/api/contact", {
+    if (!payload.access_key) throw new Error("missing key");
+    const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
     });
-    const data = await res.json().catch(() => ({ ok: false }));
-    if (!res.ok || !data.ok) throw new Error("send failed");
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === false) throw new Error(data.message || "send failed");
     form.reset();
     if (noteOk) noteOk.hidden = false;
   } catch {
