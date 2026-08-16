@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexora — Professional Digital Services & E-Books</title>
+    <title>Himalayan Academy — Markets Education</title>
     <meta
       name="description"
-      content="Accelerate your growth with expert consultation, high-impact digital guides, and tailored custom e-services."
+      content="Education-first curriculum on market behaviour, price reactions, and the psychology behind daily price action. Video courses, workshops, and one-on-one mentorship. Not financial advice."
     />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,12 +15,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="header">
       <div class="wrap nav">
-        <a class="logo" href="#home"><span>N</span> Nexora</a>
+        <a class="logo" href="#home"><span>HA</span> Himalayan Academy</a>
         <button class="menu-btn" aria-label="Menu" aria-expanded="false">
           <span></span><span></span>
         </button>
@@ -40,14 +41,15 @@
         <div class="glow glow-a"></div>
         <div class="glow glow-b"></div>
         <div class="wrap">
-          <p class="serving" id="serving">Worldwide digital delivery</p>
-          <h1>Professional Digital Services &amp; E-Books</h1>
+          <p class="serving" id="serving">Education only · not financial advice</p>
+          <h1>Structured market education, not signals</h1>
           <p>
-            Accelerate your growth with expert consultation, high-impact digital
-            guides, and tailored custom e-services.
+            When you join our program, you gain access to a comprehensive,
+            education-first curriculum designed to transform how you view the
+            financial markets.
           </p>
           <div class="actions">
-            <a class="btn btn-ghost" href="#about">Discover More</a>
+            <a class="btn btn-ghost" href="#disclaimer">Read the disclaimer</a>
             <a class="btn" href="#pricing">Get Started</a>
           </div>
         </div>
@@ -57,23 +59,26 @@
         <div class="wrap grid-3">
           <article class="reveal" style="--d:0s">
             <span>01</span>
-            <h3>Custom Digital Solutions</h3>
+            <h3>Market mechanics</h3>
             <p>
-              Tailored project execution and digital task completion designed
-              for rapid growth.
+              We focus heavily on how markets behave, how price reacts, and the
+              human psychology that drives daily price action.
             </p>
           </article>
           <article class="reveal" style="--d:.1s">
             <span>02</span>
-            <h3>Expert Consultation</h3>
-            <p>Live strategy sessions with experienced digital professionals.</p>
+            <h3>One-on-one mentorship</h3>
+            <p>
+              Personalized sessions to review progress, work through emotional
+              roadblocks, and tailor your learning path.
+            </p>
           </article>
           <article class="reveal" style="--d:.2s">
             <span>03</span>
-            <h3>High-Impact E-Books</h3>
+            <h3>Courses, workshops &amp; guides</h3>
             <p>
-              In-depth strategic frameworks and instant download access to
-              comprehensive guides.
+              Core video courses, interactive workshops, and digital e-book
+              frameworks with instant download access.
             </p>
           </article>
         </div>
@@ -85,34 +90,39 @@
             <p class="label">Experienced Digital Partners</p>
             <h2>Who We Are</h2>
             <p class="lead">
-              Delivering digital solutions and e-books that enable you to scale
-              faster
+              An academy that teaches structured analysis — not emotional
+              reaction
             </p>
             <p>
-              We specialize in empowering individuals and businesses through
-              expert digital services, high-impact resources, and actionable
-              guidance. Whether you need custom digital task execution or
-              strategic e-book frameworks, our up-to-date offerings are designed
-              to streamline your success significantly.
+              Himalayan Academy is built around one job: helping you move away
+              from emotional reactions and toward structured analysis. We teach
+              the mechanics of market behaviour, price reactions, and the
+              psychology that sits underneath daily price action.
             </p>
-            <a class="btn" href="#overview">More About Us</a>
+            <p>
+              Training here is about mindset, patience, and waiting for
+              high-probability setups before taking calculated entries —
+              discussed as education, never as a personal order to buy or sell.
+              We do not manage money. We do not place trades for you. We teach.
+            </p>
+            <a class="btn" href="#services">More About Us</a>
           </div>
           <img
             class="about-img reveal"
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
-            alt="Live strategy consultation"
+            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80"
+            alt="One-on-one mentorship session"
           />
         </div>
       </section>
 
       <section class="overview" id="overview">
-        <div class="wrap narrow reveal">
+        <div class="wrap prose reveal">
           <p class="label">Digital Growth Experts</p>
           <h2>Transforming Challenges into Digital Triumphs</h2>
           <p>
-            Accelerate your journey with our structured approach to digital
-            execution, expert consultations, and comprehensive resource
-            libraries.
+            Accelerate your journey with our structured approach: digital
+            execution of your learning path, expert consultation, and a
+            comprehensive resource library you can download and keep.
           </p>
         </div>
       </section>
@@ -125,33 +135,62 @@
               Taking your digital potential forward with proven possibilities
             </h2>
             <p>
-              Choose from our specialized digital execution packages,
-              professional consultation sessions, and comprehensive library
-              guides.
+              Choose from specialized digital execution, professional
+              consultation, and comprehensive library guides — delivered as an
+              education-first program.
             </p>
           </div>
-          <div class="grid-3">
-            <article class="reveal" style="--d:0s">
-              <h3>General E-Services</h3>
+          <div class="offer-list">
+            <article class="offer reveal">
+              <h3>The curriculum</h3>
               <p>
-                Custom digital task completion, tailored project execution, fast
-                turnaround, and direct online processing.
+                When you join our program, you gain access to a comprehensive,
+                education-first curriculum designed to transform how you view
+                the financial markets. We focus heavily on the mechanics of
+                market behavior, price reactions, and the human psychology that
+                drives daily price action, helping you move away from emotional
+                reactions and toward structured analysis.
+              </p>
+              <p>
+                Core video courses and the digital e-book library sit here:
+                in-depth strategic frameworks, instant download access, and an
+                essential resource library. This maps to the <strong>E-Book Only</strong>
+                package.
               </p>
               <a class="more" href="#pricing">Learn More</a>
             </article>
-            <article class="reveal" style="--d:.1s">
-              <h3>E-Book Guides</h3>
+            <article class="offer reveal">
+              <h3>One-on-one mentorship</h3>
               <p>
-                Comprehensive digital e-book guides featuring instant download
-                access and in-depth strategic frameworks.
+                To ensure you never feel lost, we proudly offer one-on-one
+                mentorship alongside our core video courses and interactive
+                workshops. In these personalized sessions, you work directly
+                with our team to review your progress, conquer personal
+                emotional roadblocks, and tailor your learning path.
+              </p>
+              <p>
+                Live expert consultation plus the full e-book package is the
+                <strong>Consultation + E-Book</strong> plan — one-on-one advisory,
+                priority custom execution of your learning path, and a
+                comprehensive tailored strategy. Still education. Not a trade
+                call.
               </p>
               <a class="more" href="#pricing">Learn More</a>
             </article>
-            <article class="reveal" style="--d:.2s">
-              <h3>Live Expert Consultation</h3>
+            <article class="offer reveal">
+              <h3>Workshops &amp; digital execution</h3>
               <p>
-                One-on-one expert advisory sessions paired with full digital
-                e-book packages for complete strategic execution.
+                Interactive workshops and custom digital task completion so the
+                program is actually used: tailored project execution, fast
+                digital turnaround, and direct online processing. That is
+                <strong>General E-Services</strong> — the practical track for
+                getting set up and working through the material online.
+              </p>
+              <p>
+                Ultimately, our training teaches you how to master your mindset,
+                practice patience, and wait for high-probability setups before
+                taking calculated entries. Practice and study — not a
+                solicitation to buy or sell anything.
               </p>
               <a class="more" href="#pricing">Learn More</a>
             </article>
@@ -164,6 +203,10 @@
           <div class="narrow center reveal">
             <p class="label">Pricing Plans</p>
             <h2>Choose Your Growth Package</h2>
+            <p>
+              Three packages. Education and materials only. See the
+              <a href="#disclaimer">disclaimer</a> before you book.
+            </p>
             <p class="fx-line" id="fx-line">All prices in GBP</p>
           </div>
           <div class="grid-3">
@@ -205,6 +248,11 @@
               <a class="btn btn-green" href="#contact">Book Package</a>
             </article>
           </div>
+          <p class="legal-note">
+            Packages include educational content, digital guides, workshops,
+            and/or mentorship. They are not investment advice or a
+            recommendation to trade.
+          </p>
         </div>
       </section>
 
@@ -212,14 +260,34 @@
         <div class="wrap split">
           <div class="reveal">
             <p class="label">Contact Us</p>
-            <h2>Let’s start your next digital win</h2>
+            <h2>Start with the curriculum, not a trade</h2>
             <p>
-              Tell us the package you need. We’ll confirm scope and delivery
-              within 24 hours.
+              Tell us which package you want. We’ll confirm access and delivery
+              within 24 hours. Education only.
             </p>
+            <ul class="details">
+              <li>
+                <span>Phone</span>
+                <a href="tel:+447756930186">+44 7756 930186</a>
+              </li>
+              <li>
+                <span>Email</span>
+                <a href="mailto:ajune7834@gmail.com">ajune7834@gmail.com</a>
+              </li>
+              <li>
+                <span>Address</span>
+                Scotland
+              </li>
+            </ul>
             <p class="local" id="local">Secure online processing worldwide</p>
+            <div
+              id="map"
+              role="img"
+              aria-label="Map of Scotland, business location"
+            ></div>
           </div>
           <form id="form" class="reveal" style="--d:.12s">
+            <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
             <label>Name <input type="text" name="name" required /></label>
             <label>Email <input type="email" name="email" required /></label>
             <label>
@@ -233,17 +301,59 @@
             <label>Message <textarea name="message" rows="4" required></textarea></label>
             <button class="btn" type="submit">Send Message</button>
             <p class="note" hidden>Received. We’ll follow up shortly.</p>
+            <p class="note err" hidden>Couldn’t send. Try again or email us directly.</p>
           </form>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="wrap">
-        <p>© 2026 Nexora. All rights reserved. Secure online delivery.</p>
+      <div class="wrap footer-block">
+        <a class="logo footer-logo" href="#home"><span>HA</span> Himalayan Academy</a>
+        <div class="footer-cards">
+          <a class="footer-card" href="tel:+447756930186">
+            <small>Call</small>
+            +44 7756 930186
+          </a>
+          <a class="footer-card" href="mailto:ajune7834@gmail.com">
+            <small>Email</small>
+            ajune7834@gmail.com
+          </a>
+          <div class="footer-card">
+            <small>Based in</small>
+            Scotland
+          </div>
+        </div>
+        <p>
+          © 2026 Himalayan Academy. All rights reserved. Secure online delivery.
+        </p>
+        <p class="footer-legal">
+          Educational and informational purposes only. Not financial advice.
+          <a href="#disclaimer">Full disclaimer</a>
+        </p>
       </div>
     </footer>
 
+    <dialog class="legal" id="disclaimer" aria-labelledby="disclaimer-title">
+      <form method="dialog" class="legal-card">
+        <button class="legal-x" type="submit" aria-label="Close">×</button>
+        <p class="label">Important educational disclaimer</p>
+        <h2 id="disclaimer-title">This is education. It is not advice.</h2>
+        <p>
+          All content, courses, and materials provided on this website are
+          strictly for educational and informational purposes only. We are not
+          financial advisors, licensed brokers, or registered investment
+          advisers. Nothing on this site constitutes personalized financial
+          advice, a recommendation, or a solicitation to buy or sell any
+          security, crypto, or financial instrument. Trading carries a high
+          level of risk, and you should consult with a qualified financial
+          professional before making any financial decisions.
+        </p>
+        <button class="btn" type="submit" value="ok" autofocus>I understand</button>
+      </form>
+    </dialog>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
