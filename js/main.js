@@ -38,6 +38,38 @@ menu?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+const legal = document.querySelector("#disclaimer");
+const legalKey = "ha-disclaimer";
+
+function openLegal() {
+  if (legal && !legal.open) legal.showModal();
+}
+
+document.querySelectorAll('a[href="#disclaimer"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    openLegal();
+  });
+});
+
+legal?.addEventListener("click", (event) => {
+  if (event.target === legal) legal.close();
+});
+
+legal?.addEventListener("close", () => {
+  sessionStorage.setItem(legalKey, "1");
+  if (location.hash === "#disclaimer") {
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+});
+
+if (location.hash === "#disclaimer") {
+  openLegal();
+} else if (!sessionStorage.getItem(legalKey)) {
+  const delay = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800;
+  setTimeout(openLegal, delay);
+}
+
 function fetchJson(url, ms = 3000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
@@ -67,11 +99,7 @@ async function loadPlace() {
     const res = await fetchJson("https://ipwho.is/");
     const data = await res.json();
     if (!data?.success) return;
-    const serving = document.querySelector("#serving");
     const local = document.querySelector("#local");
-    if (data.city && data.country) {
-      serving.textContent = `Viewing from ${data.city}, ${data.country}`;
-    }
     const tz = typeof data.timezone === "string" ? data.timezone : data.timezone?.id;
     if (tz) {
       const time = new Date().toLocaleTimeString([], {
@@ -87,13 +115,89 @@ async function loadPlace() {
 }
 
 const form = document.querySelector("#form");
-const note = form?.querySelector(".note");
+const noteOk = form?.querySelector(".note:not(.err)");
+const noteErr = form?.querySelector(".note.err");
+const submitBtn = form?.querySelector('[type="submit"]');
 
-form?.addEventListener("submit", (event) => {
+form?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (note) note.hidden = false;
-  form.reset();
+  if (noteOk) noteOk.hidden = true;
+  if (noteErr) noteErr.hidden = true;
+  if (form.elements._honey?.value) {
+    if (noteOk) noteOk.hidden = false;
+    form.reset();
+    return;
+  }
+
+  const payload = Object.fromEntries(new FormData(form));
+  payload._subject = "Himalayan Academy enquiry";
+  payload._template = "table";
+  payload._captcha = "false";
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+  }
+
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/ajune7834@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok || data.success === "false" || data.success === false) {
+      throw new Error(data.message || "send failed");
+    }
+    form.reset();
+    if (noteOk) noteOk.hidden = false;
+  } catch {
+    if (noteErr) noteErr.hidden = false;
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+    }
+  }
 });
 
 loadFx();
 loadPlace();
+
+function initMap() {
+  const el = document.querySelector("#map");
+  if (!el || !window.L || el._leaflet_id) return;
+
+  const scotland = [56.4907, -4.2026];
+  const map = L.map(el, {
+    scrollWheelZoom: false,
+    zoomControl: false,
+    attributionControl: true,
+  }).setView(scotland, 5);
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: "&copy; OpenStreetMap &copy; CARTO",
+    subdomains: "abcd",
+    maxZoom: 18,
+  }).addTo(map);
+
+  const pin = L.divIcon({
+    className: "map-pin",
+    html: '<span class="map-dot"></span>',
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+  });
+
+  L.marker(scotland, { icon: pin })
+    .addTo(map)
+    .bindPopup("Himalayan Academy · Scotland");
+
+  const refresh = () => map.invalidateSize();
+  setTimeout(refresh, 300);
+  el.closest(".reveal")?.addEventListener("transitionend", refresh);
+}
+
+initMap();
